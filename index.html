@@ -1,257 +1,84 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>El Racó de Patricia — Nueva Versión Unificada</title>
-<style>
-:root{--p:#c2185b;--pd:#8e0038;--bg:#1a0f14;--card:#26161e;--txt:#f5e8ee;--acc:#ffb3d1}
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',system-ui,sans-serif}
-body{background:var(--bg);color:var(--txt)}
-header{background:linear-gradient(135deg,var(--pd),var(--p));padding:14px 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;position:sticky;top:0;z-index:50}
-header h1{font-size:1.3rem}
-header .logo{font-size:1.6rem}
-nav{display:flex;gap:6px;flex-wrap:wrap}
-nav button{background:rgba(255,255,255,.12);border:none;color:#fff;padding:8px 12px;border-radius:20px;cursor:pointer;font-size:.85rem}
-nav button:hover,nav button.act{background:#fff;color:var(--pd)}
-.langs button{background:rgba(0,0,0,.3)}
-main{max-width:1100px;margin:0 auto;padding:24px 16px}
-section{display:none}
-section.act{display:block;animation:fade .3s}
-@keyframes fade{from{opacity:0}to{opacity:1}}
-h2{color:var(--acc);margin:10px 0 18px;font-size:1.5rem}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
-.card{background:var(--card);border-radius:12px;padding:16px;border:1px solid #3d2430}
-.card h3{color:var(--acc);font-size:1rem;margin-bottom:6px}
-.card p{font-size:.85rem;opacity:.85;line-height:1.5}
-.price{color:#7fe3a0;font-weight:bold;margin-top:8px;display:block}
-.btn{display:inline-block;background:var(--p);color:#fff;border:none;padding:10px 18px;border-radius:24px;cursor:pointer;margin-top:10px;font-size:.9rem}
-.btn:hover{background:var(--pd)}
-.banner{background:linear-gradient(120deg,#3e0718,#c2185b);border-radius:16px;padding:36px;margin-bottom:24px;text-align:center}
-.banner p{opacity:.9;max-width:640px;margin:10px auto}
-table{width:100%;border-collapse:collapse;font-size:.9rem}
-td,th{padding:10px;border-bottom:1px solid #3d2430;text-align:left}
-th{color:var(--acc)}
-/* Chat */
-#chatBox{background:var(--card);border:1px solid #3d2430;border-radius:14px;height:380px;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:8px}
-.msg{max-width:78%;padding:10px 14px;border-radius:14px;font-size:.9rem;line-height:1.45;white-space:pre-line}
-.bot{background:#3d2430;align-self:flex-start;border-bottom-left-radius:2px}
-.user{background:var(--p);align-self:flex-end;border-bottom-right-radius:2px}
-.typing{opacity:.6;font-style:italic}
-#chatForm{display:flex;gap:8px;margin-top:10px}
-#chatForm input{flex:1;background:var(--card);border:1px solid #3d2430;color:var(--txt);padding:12px;border-radius:24px;outline:none}
-/* Radio */
-#radioBox{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid #3d2430;border-radius:14px;padding:20px;flex-wrap:wrap}
-.eq{display:flex;gap:3px;align-items:flex-end;height:34px}
-.eq i{width:5px;background:var(--acc);animation:eq 1s infinite ease-in-out}
-@keyframes eq{0%,100%{height:20%}50%{height:100%}}
-select,input[type=text]{background:var(--card);border:1px solid #3d2430;color:var(--txt);padding:10px;border-radius:10px}
-/* Dados */
-.dado{font-size:4rem;background:#fff;color:var(--pd);width:110px;height:110px;border-radius:16px;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:bold;line-height:1.1;cursor:pointer;padding:6px}
-.dados{display:flex;gap:24px;justify-content:center;margin:20px 0;flex-wrap:wrap}
-.mem{width:74px;height:74px;font-size:1.8rem;background:var(--card);border:1px solid #3d2430;border-radius:10px;cursor:pointer;color:var(--txt)}
-.mem.open{background:#fff;color:var(--pd)}
-.mem.done{background:#2e7d32;cursor:default}
-#ageGate{position:fixed;inset:0;background:rgba(10,4,8,.96);z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px}
-footer{margin-top:40px;padding:20px;text-align:center;font-size:.8rem;opacity:.7;border-top:1px solid #3d2430}
-.tag{display:inline-block;background:#3d2430;border-radius:12px;padding:4px 10px;font-size:.75rem;margin:3px}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>el-raco-nuevo — Repositorio el-raco-nuevo — parte del ecosistema Belentani</title>
+  <meta name="description" content="Repositorio el-raco-nuevo — parte del ecosistema Belentani">
+  <link rel="stylesheet" href="hero.css">
+  <meta name="theme-color" content="#0ea5e9">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <script defer src="hero.js"></script>
 </head>
 <body>
-
-<div id="ageGate">
-  <div style="font-size:3rem">🔒</div>
-  <h2 style="margin:10px">El Racó de Patricia</h2>
-  <p data-i18n="age">Este sitio contiene contenido para adultos (+18).</p>
-  <button class="btn" onclick="document.getElementById('ageGate').remove()" data-i18n="ageBtn">Soy mayor de edad — Entrar</button>
-</div>
-
-<header>
-  <div><span class="logo">🌹</span> <h1 style="display:inline">El Racó de Patricia <small style="opacity:.7;font-size:.7rem">v2026 · unificada</small></h1></div>
-  <nav id="nav">
-    <button data-s="inicio" class="act" data-i18n="nIni">Inicio</button>
-    <button data-s="tienda" data-i18n="nShop">Tienda</button>
-    <button data-s="consultorio" data-i18n="nBlog">Consultorio</button>
-    <button data-s="juegos" data-i18n="nGames">Juegos</button>
-    <button data-s="radio" data-i18n="nRadio">Radio</button>
-    <button data-s="chat" data-i18n="nChat">PatriciaIA</button>
-    <button data-s="info" data-i18n="nInfo">Tienda física</button>
+  <nav class="nav">
+    <a href="#" class="logo">el-raco-nuevo</a>
+    <ul class="nav-links">
+      <li><a href="#features">Características</a></li>
+      <li><a href="#stack">Stack</a></li>
+      <li><a href="#about">Acerca de</a></li>
+    </ul>
+    <a href="#" class="cta">Empezar</a>
   </nav>
-  <div class="langs">
-    <button onclick="setLang('es')">ES</button><button onclick="setLang('ca')">CA</button><button onclick="setLang('en')">EN</button>
-  </div>
-</header>
 
-<main>
-<!-- INICIO -->
-<section id="inicio" class="act">
-  <div class="banner">
-    <h2 data-i18n="h1">Sex Shop físico y online en Lloret de Mar (Girona)</h2>
-    <p data-i18n="p1">Más de 8.000 productos, asesoramiento sexológico, envío discreto en 24/48 h y tuppersex en toda Girona. Nueva versión unificada: recupera lo mejor de todas las épocas de la web y añade juegos, radio y asistente con IA.</p>
-    <button class="btn" onclick="go('tienda')" data-i18n="cta">Ver catálogo</button>
-  </div>
-  <div class="grid">
-    <div class="card"><h3>🚚 Envío discreto 24/48h</h3><p data-i18n="f1">Paquete neutro sin logos. Envío gratuito a partir de 60 €.</p></div>
-    <div class="card"><h3>🔒 Pago seguro</h3><p data-i18n="f2">Tarjeta, PayPal, transferencia y contra reembolso.</p></div>
-    <div class="card"><h3>🎓 Asesoramiento</h3><p data-i18n="f3">Consultorio erótico y atención personalizada de Patricia.</p></div>
-    <div class="card"><h3>🍷 Tuppersex Girona</h3><p data-i18n="f4">Organizamos talleres y tuppersex a domicilio.</p></div>
-  </div>
-</section>
+  <section class="hero">
+    <div class="hero-canvas-wrapper">
+      <canvas id="hero-canvas"></canvas>
+    </div>
+    <div class="hero-overlay">
+      <h1>el-raco-nuevo</h1>
+      <p>Repositorio el-raco-nuevo — parte del ecosistema Belentani</p>
+      <div class="hero-actions">
+        <a href="#features" class="btn-primary">Ver características</a>
+        <a href="#stack" class="btn-secondary">Ver stack</a>
+      </div>
+    </div>
+  </section>
 
-<!-- TIENDA -->
-<section id="tienda">
-  <h2 data-i18n="catT">Categorías (recuperadas de todas las versiones)</h2>
-  <p id="catTags"></p>
-  <h2 style="margin-top:26px" data-i18n="popT">Productos populares</h2>
-  <div class="grid" id="prodGrid"></div>
-</section>
+  <section class="section" id="features">
+    <h2>Características</h2>
+    <p>Producto completo con landing page hero, shader WebGL animado, y stack moderno listo para producción.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>🚀 Hero con Shader WebGL</h3>
+        <p>Fondo animado con FBM (Fractal Brownian Motion), parallax de ratón y modo de bajo consumo.</p>
+      </div>
+      <div class="card">
+        <h3>📱 Responsive</h3>
+        <p>Diseño adaptable a móvil, tableta y desktop con Tailwind CSS.</p>
+      </div>
+      <div class="card">
+        <h3>⚡ Rápido</h3>
+        <p>Sin dependencias pesadas para el hero. Carga instantánea y DPR limitado.</p>
+      </div>
+      <div class="card">
+        <h3>🔒 Seguro</h3>
+        <p>Sin secretos hardcodeados. Variables de entorno para claves sensibles.</p>
+      </div>
+    </div>
+  </section>
 
-<!-- CONSULTORIO -->
-<section id="consultorio">
-  <h2 data-i18n="blogT">Consultorio erótico — últimos artículos</h2>
-  <div class="grid" id="blogGrid"></div>
-</section>
+  <section class="section" id="stack">
+    <h2>Stack Tecnológico</h2>
+    <p>Tecnologías utilizadas en este repositorio.</p>
+    <ul class="stack-list">
+      
+    </ul>
+  </section>
 
-<!-- JUEGOS -->
-<section id="juegos">
-  <h2 data-i18n="gT">🎮 Zona de juegos</h2>
-  <div class="card" style="margin-bottom:20px">
-    <h3 data-i18n="gDice">🎲 Dados eróticos (versión jugable)</h3>
-    <p data-i18n="gDiceP">Haz clic en los dados: uno indica la parte del cuerpo, el otro la acción.</p>
-    <div class="dados"><div class="dado" id="d1" onclick="rollD()"></div><div class="dado" id="d2" onclick="rollD()"></div></div>
-    <p id="diceMsg" style="text-align:center;color:var(--acc);min-height:1.4em"></p>
-  </div>
-  <div class="card">
-    <h3 data-i18n="gMem">🧠 Memoria erótica</h3>
-    <p data-i18n="gMemP">Encuentra las 6 parejas de iconos.</p>
-    <div id="memBoard" style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px"></div>
-    <p id="memMsg" style="text-align:center;color:var(--acc);margin-top:10px"></p>
-  </div>
-</section>
+  <section class="section" id="about">
+    <h2>Acerca de el-raco-nuevo</h2>
+    <p>Este repositorio forma parte del ecosistema Belentani. Código abierto bajo licencia MIT. Documentación completa y tests incluidos.</p>
+  </section>
 
-<!-- RADIO -->
-<section id="radio">
-  <h2 data-i18n="rT">📡 Radio El Racó</h2>
-  <div id="radioBox">
-    <div class="eq"><i style="animation-delay:0s"></i><i style="animation-delay:.2s"></i><i style="animation-delay:.4s"></i><i style="animation-delay:.1s"></i><i style="animation-delay:.3s"></i></div>
-    <select id="station">
-      <option value="https://ice1.somafm.com/defcon-128-mp3">SomaFM · DEF CON Radio</option>
-      <option value="https://ice1.somafm.com/groovesalad-128-mp3">SomaFM · Groove Salad (chill)</option>
-      <option value="https://ice1.somafm.com/beatblender-128-mp3">SomaFM · Beat Blender</option>
-    </select>
-    <button class="btn" onclick="toggleRadio()" id="rBtn" data-i18n="rPlay">▶ Emitir</button>
-    <span id="rStat" style="opacity:.7"></span>
-  </div>
-  <p style="opacity:.6;font-size:.8rem;margin-top:10px" data-i18n="rNote">Música de ambientación cortesía de SomaFM (sin ánimo de lucro). Sustituye las URLs por tus emisoras favoritas.</p>
-</section>
+  <footer>
+    <p>© 2026 el-raco-nuevo — Parte del ecosistema Belentani / NOIACORE</p>
+  </footer>
 
-<!-- CHAT -->
-<section id="chat">
-  <h2 data-i18n="cT">💬 PatriciaIA — Asistente de la tienda</h2>
-  <div id="chatBox"></div>
-  <form id="chatForm"><input id="chatIn" autocomplete="off"><button class="btn" data-i18n="cSend">Enviar</button></form>
-</section>
-
-<!-- INFO -->
-<section id="info">
-  <h2 data-i18n="iT">🏪 Tienda física</h2>
-  <div class="card">
-  <table>
-    <tr><th data-i18n="iAddr">Dirección</th><td>Av. Pau Casals 29, Local 4 · 17310 Lloret de Mar (Girona)</td></tr>
-    <tr><th>Tel.</th><td>+34 972 108 647 · 680 924 678</td></tr>
-    <tr><th>Email</th><td>info@elracodepatricia.es</td></tr>
-    <tr><th data-i18n="iHours">Horario</th><td data-i18n="iHoursV">Lunes a sábado: 10:30–14:00 y 17:00–20:30</td></tr>
-    <tr><th data-i18n="iPay">Pagos</th><td data-i18n="iPayV">Tarjeta, PayPal, transferencia, contra reembolso</td></tr>
-    <tr><th data-i18n="iRev">Opiniones</th><td data-i18n="iRevV">★★★★★ «Envío rapidísimo y totalmente discreto» — Blanes · «Atención inmejorable» — Girona · «Repetiré seguro» — Lloret</td></tr>
-  </table>
-  </div>
-</section>
-</main>
-
-<footer>El Racó de Patricia S.L · NIF B-55196638 · Versión unificada 2026 reconstruida a partir de las versiones 2015–2026 + nuevas funciones · <a style="color:var(--acc)" href="https://www.elracodepatricia.com" target="_blank">elracodepatricia.com</a></footer>
-
-<script>
-/* ===== Navegación ===== */
-function go(id){document.querySelectorAll('section').forEach(s=>s.classList.remove('act'));document.getElementById(id).classList.add('act');
-document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('act',b.dataset.s===id));window.scrollTo(0,0)}
-document.querySelectorAll('#nav button').forEach(b=>b.onclick=()=>go(b.dataset.s));
-
-/* ===== Datos recuperados de las versiones ===== */
-const CATS=["Aceites y lubricantes","Afrodisíacos","Divertidos","Juegos","Juguetes XXX","Lencería","Novedades","Preservativos","Tratamientos","Varios","BDSM","Vibradores","Control remoto","USB recargables","Tuppersex","Línea LGBT","Cosmética erótica"];
-const PRODS=[
-["SQWEEL GO recargable","Simulador de sexo oral USB recargable, versión de viaje.","39,99 €"],
-["VIAGEL para mujer","Gel estimulante de uso tópico para ella.","16,15 €"],
-["OVO F2 vibrador blanco/rosa","Vibrador de silicona médica, silencioso y sumergible.","37,50 €"],
-["EXTASE SENSUEL crema","Crema estimulante con efecto calor.","19,56 €"],
-["BASIX Rubber Works 24 cm","Dildo de goma sin ftalatos con ventosa.","43,98 €"],
-["TORITO LOCO","Anillo vibrador para el pene, un solo tamaño.","11,74 €"],
-["BATHMATE hidrobomba","Bomba de vacío hidráulica para él.","119,00 €"],
-["SANINEX SEXUAL COOL","Spray afrodisíaco 125 ml.","17,06 €"],
-["OUCH pinzas hélice","Pinzas regulables para pezones, rosa.","25,93 €"],
-["Arnés deluxe + dildo","Arnés ajustable con dildo de silicona de 25,5 cm.","92,37 €"]];
-const BLOG=[["Lubricantes: guía definitiva","Base de agua, silicona o aceite: cuál elegir según el uso."],["Primeros pasos en el BDSM","Comunicación, límites y seguridad: lo básico antes de empezar."],["Tuppersex: cómo montar uno","Ideas, dinámicas y productos para una fiesta inolvidable."],["Juguetes para parejas","Juguetes con control remoto y app para jugar a distancia."],["Cuidado e higiene","Cómo limpiar y conservar tus juguetes para que duren años."]];
-catTags.innerHTML=CATS.map(c=>`<span class="tag">${c}</span>`).join('');
-prodGrid.innerHTML=PRODS.map(p=>`<div class="card"><h3>${p[0]}</h3><p>${p[1]}</p><span class="price">${p[2]}</span><button class="btn" data-i18n="add">Añadir</button></div>`).join('');
-blogGrid.innerHTML=BLOG.map(b=>`<div class="card"><h3>${b[0]}</h3><p>${b[1]}</p></div>`).join('');
-
-/* ===== Juego: dados ===== */
-const PARTES=[".labios",".cuello",".orejas",".espalda",".muslos",".muñecas"],ACC=["besar","lamer","masajear","acariciar","susurrar a","morder suavemente"];
-function rollD(){const a=PARTES[Math.random()*6|0],b=ACC[Math.random()*6|0];d1.textContent='💋';d2.textContent='🎲';
-setTimeout(()=>{d1.textContent=a;d2.textContent=b;diceMsg.textContent=T('diceGo')+b+a},450)}
-
-/* ===== Juego: memoria ===== */
-const ICONS=["🍒","💋","🌹","🔒","🍷","🔥"];let mFlip=[],mDone=0;
-function memInit(){mFlip=[];mDone=0;memMsg.textContent='';
-const cards=[...ICONS,...ICONS].sort(()=>Math.random()-.5);
-memBoard.innerHTML=cards.map((c,i)=>`<button class="mem" data-c="${c}" data-i="${i}">?</button>`).join('');
-memBoard.querySelectorAll('.mem').forEach(b=>b.onclick=()=>memCl(b))}
-function memCl(b){if(b.classList.contains('open')||b.classList.contains('done')||mFlip.length>=2)return;
-b.classList.add('open');b.textContent=b.dataset.c;mFlip.push(b);
-if(mFlip.length===2){if(mFlip[0].dataset.c===mFlip[1].dataset.c){mFlip.forEach(x=>{x.classList.remove('open');x.classList.add('done')});mDone++;mFlip=[];if(mDone===6)memMsg.textContent=T('memWin')}
-else{setTimeout(()=>{mFlip.forEach(x=>{x.classList.remove('open');x.textContent='?'});mFlip=[]},800)}}}
-memInit();
-
-/* ===== Radio ===== */
-let audio=null;
-function toggleRadio(){if(audio){audio.pause();audio=null;rBtn.textContent=T('rPlay');rStat.textContent='⏹';return}
-audio=new Audio(station.value);audio.play();rBtn.textContent=T('rStop');rStat.textContent='🔴 ON AIR'}
-station.onchange=()=>{if(audio)toggleRadio(),toggleRadio()};
-
-/* ===== Chat PatriciaIA (simula comportamiento humano: saludo, pausa de escritura, memoria del nombre) ===== */
-const CL={es:{hi:"¡Hola! 😊 Soy Patricia. ¿Cómo te llamas?",ask:"Encantada, {n}. ¿Qué buscas hoy: juguetes, lencería, lubricantes, tuppersex...?",def:"Buena pregunta, {n}. Para eso lo mejor es pasarte por la tienda o escribirnos a info@elracodepatricia.es. ¿Te ayudo con algo más? Envíos, tuppersex, horarios...",name:"¡Un placer, {n}! Cuéntame: juguetes, lencería, lubricantes, regalos...?",bye:"¡Hasta pronto, {n}! Un abrazo 💕",typ:"Patricia está escribiendo..."},
-ca:{hi:"Hola! 😊 Sóc la Patricia. Com et dius?",ask:"Encantada, {n}. Què busques avui: joguines, llenceria, lubricants, tuppersex...?",def:"Bona pregunta, {n}. El millor és passar per la botiga o escriure'ns a info@elracodepatricia.es. Et puc ajudar amb enviaments, tuppersex, horaris...",name:"Un plaer, {n}! Explica'm: joguines, llenceria, lubricants, regals...?",bye:"Fins aviat, {n}! Una abraçada 💕",typ:"La Patricia està escrivint..."},
-en:{hi:"Hi! 😊 I'm Patricia. What's your name?",ask:"Nice to meet you, {n}. What are you looking for today: toys, lingerie, lubricants, tuppersex...?",def:"Good question, {n}. Best is to visit the shop or email info@elracodepatricia.es. I can help with shipping, tuppersex, opening hours...",name:"A pleasure, {n}! Tell me: toys, lingerie, lubricants, gifts...?",bye:"See you soon, {n}! Big hug 💕",typ:"Patricia is typing..."}};
-let lang='es',userName=null,greeted=false;
-function T(k){return (I18N[lang]&&I18N[lang][k])||I18N.es[k]||k}
-function addMsg(t,cls){const d=document.createElement('div');d.className='msg '+cls;d.textContent=t;chatBox.appendChild(d);chatBox.scrollTop=chatBox.scrollHeight;return d}
-function botSay(txt){const tp=addMsg(CL[lang].typ,'bot typing');
-setTimeout(()=>{tp.remove();addMsg(txt.replace(/\{n\}/g,userName||''))},700+Math.random()*900)}
-function reply(m){const s=m.toLowerCase();
-if(/adios|adeu|bye|hasta pronto|fins/.test(s))return botSay(CL[lang].bye);
-if(!userName){const mt=m.match(/(?:me llamo|soi?n? |i'm|i am|my name is|sóc|em dic)\s+([a-záéíóúàèìòù]+)/i);
-if(mt){userName=mt[1][0].toUpperCase()+mt[1].slice(1);return botSay(CL[lang].name)}userName=m.split(/\s/)[0];return botSay(CL[lang].ask)}
-if(/env[íi]o|enviament|shipping|discreto|discret/.test(s))return botSay(T('f1')+' (SEUR 24/48h)');
-if(/tuppersex/.test(s))return botSay(T('f4'));
-if(/horari|hora|open|hour/.test(s))return botSay(T('iHoursV'));
-if(/pago|pagament|pay|tarjeta|paypal/.test(s))return botSay(T('f2'));
-if(/lubric/.test(s))return botSay('💧 '+T('catT')+': bases de agua, silicona y anal — te recomiendo mirar la sección Tienda.');
-if(/lenceria|llenceria|linger/.test(s))return botSay('👗 Bodys, conjuntos, corsés, disfraces y línea masculina — sección Tienda.');
-if(/juguete|toy|vibrador|dildo/.test(s))return botSay('🎮 Más de 8.000 productos: vibradores, masturbadores, control remoto, USB recargables... y si quieres, prueba nuestra zona de Juegos 😉');
-if(/juego|game|pes|futbol/.test(s))return botSay('Tenemos dados eróticos y memoria en la pestaña Juegos ⚽🎲');
-if(/gracias|thank/.test(s))return botSay('¡De nada! 💕');
-botSay(CL[lang].def)}
-chatForm.onsubmit=e=>{e.preventDefault();const m=chatIn.value.trim();if(!m)return;addMsg(m,'user');chatIn.value='';reply(m)};
-setTimeout(()=>botSay(CL[lang].hi),600);
-
-/* ===== Traducción de la interfaz ===== */
-const I18N={
-es:{age:"Este sitio contiene contenido para adultos (+18).",ageBtn:"Soy mayor de edad — Entrar",nIni:"Inicio",nShop:"Tienda",nBlog:"Consultorio",nGames:"Juegos",nRadio:"Radio",nChat:"PatriciaIA",nInfo:"Tienda física",h1:"Sex Shop físico y online en Lloret de Mar (Girona)",p1:"Más de 8.000 productos, asesoramiento sexológico, envío discreto en 24/48 h y tuppersex en toda Girona. Nueva versión unificada: recupera lo mejor de todas las épocas de la web y añade juegos, radio y asistente con IA.",cta:"Ver catálogo",f1:"🚚 Paquete neutro sin logos. Envío gratuito a partir de 60 €.",f2:"🔒 Tarjeta, PayPal, transferencia y contra reembolso.",f3:"🎓 Consultorio erótico y atención personalizada de Patricia.",f4:"🍷 Organizamos talleres y tuppersex a domicilio en Girona.",catT:"Categorías (recuperadas de todas las versiones)",popT:"Productos populares",add:"Añadir",blogT:"Consultorio erótico — últimos artículos",gT:"🎮 Zona de juegos",gDice:"🎲 Dados eróticos (versión jugable)",gDiceP:"Haz clic en los dados: uno indica la parte del cuerpo, el otro la acción.",diceGo:"¡Toca ",gMem:"🧠 Memoria erótica",gMemP:"Encuentra las 6 parejas de iconos.",memWin:"¡Has ganado! 🎉",rT:"📡 Radio El Racó",rPlay:"▶ Emitir",rStop:"⏹ Parar",rNote:"Música de ambientación cortesía de SomaFM (sin ánimo de lucro). Sustituye las URLs por tus emisoras favoritas.",cT:"💬 PatriciaIA — Asistente de la tienda",cSend:"Enviar",iT:"🏪 Tienda física",iAddr:"Dirección",iHours:"Horario",iHoursV:"Lunes a sábado: 10:30–14:00 y 17:00–20:30",iPay:"Pagos",iPayV:"Tarjeta, PayPal, transferencia, contra reembolso",iRev:"Opiniones",iRevV:"★★★★★ «Envío rapidísimo y totalmente discreto» — Blanes · «Atención inmejorable» — Girona · «Repetiré seguro» — Lloret"},
-ca:{age:"Aquest lloc conté contingut per a adults (+18).",ageBtn:"Sóc major d'edat — Entrar",nIni:"Inici",nShop:"Botiga",nBlog:"Consultori",nGames:"Jocs",nRadio:"Ràdio",nChat:"PatriciaIA",nInfo:"Botiga física",h1:"Sex Shop físic i online a Lloret de Mar (Girona)",p1:"Més de 8.000 productes, assessorament sexològic, enviament discret en 24/48 h i tuppersex a tota Girona.",cta:"Veure catàleg",f1:"🚚 Paquet neutre sense logotips. Enviament gratuït a partir de 60 €.",f2:"🔒 Targeta, PayPal, transferència i contra reemborsament.",f3:"🎓 Consultori eròtic i atenció personalitzada.",f4:"🍷 Organitzem tallers i tuppersex a domicili a Girona.",catT:"Categories",popT:"Productes populars",add:"Afegir",blogT:"Consultori eròtic — últims articles",gT:"🎮 Zona de jocs",gDice:"🎙 Daus eròtics",gDiceP:"Clica els daus: un indica la part del cos, l'altre l'acció.",diceGo:"Toca ",gMem:"🧠 Memòria eròtica",gMemP:"Troba les 6 parelles d'icones.",memWin:"Has guanyat! 🎉",rT:"📡 Ràdio El Racó",rPlay:"▶ Emetre",rStop:"⏹ Aturar",rNote:"Música de SomaFM. Substitueix les URLs per les teves emissores.",cT:"💬 PatriciaIA — Assistent de la botiga",cSend:"Enviar",iT:"🏪 Botiga física",iAddr:"Adreça",iHours:"Horari",iHoursV:"Dilluns a dissabte: 10:30–14:00 i 17:00–20:30",iPay:"Pagaments",iPayV:"Targeta, PayPal, transferència, contra reemborsament",iRev:"Opinions",iRevV:"★★★★★ «Enviament ràpid i discret» — Blanes · «Atenció inmillorable» — Girona"},
-en:{age:"This site contains adult content (18+).",ageBtn:"I am 18 or older — Enter",nIni:"Home",nShop:"Shop",nBlog:"Advice blog",nGames:"Games",nRadio:"Radio",nChat:"PatriciaAI",nInfo:"Physical store",h1:"Brick-and-mortar & online sex shop in Lloret de Mar (Girona)",p1:"Over 8,000 products, sexological advice, discreet 24/48h shipping and tuppersex parties across Girona.",cta:"Browse catalog",f1:"🚚 Plain unbranded packaging. Free shipping over €60.",f2:"🔒 Card, PayPal, bank transfer and cash on delivery.",f3:"🎓 Erotic advice column and personal guidance.",f4:"🍷 We host workshops and home tuppersex parties in Girona.",catT:"Categories",popT:"Popular products",add:"Add",blogT:"Advice blog — latest posts",gT:"🎮 Game zone",gDice:"🎲 Erotic dice (playable)",gDiceP:"Click the dice: one gives a body part, the other an action.",diceGo:"Now ",gMem:"🧠 Erotic memory",gMemP:"Find all 6 matching pairs.",memWin:"You won! 🎉",rT:"📡 El Racó Radio",rPlay:"▶ Play",rStop:"⏹ Stop",rNote:"Music courtesy of SomaFM. Replace URLs with your favorite stations.",cT:"💬 PatriciaAI — Shop assistant",cSend:"Send",iT:"🏪 Physical store",iAddr:"Address",iHours:"Hours",iHoursV:"Mon–Sat: 10:30–14:00 and 17:00–20:30",iPay:"Payments",iPayV:"Card, PayPal, transfer, cash on delivery",iRev:"Reviews",iRevV:"★★★★★ \"Fast, totally discreet shipping\" — Blanes · \"Amazing service\" — Girona"}};
-function setLang(l){lang=l;document.documentElement.lang=l;
-document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(I18N[l][k])el.textContent=I18N[l][k]});
-if(audio)rBtn.textContent=T('rStop')}
-rollD();
-</script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      window.initHeroShader('hero-canvas', '#0ea5e9', '#7c3aed');
+    });
+  </script>
 </body>
 </html>
