@@ -20,3 +20,49 @@ Quality baseline: CI + Dependabot + CodeQL + reglas de agentes por [premium-fact
 
 ## Producto
 Véase `plataforma/OFERTA.md`, `plataforma/precios.json`, `plataforma/ONEPAGER.md`.
+
+## Que es
+
+Web estática de El Racó (edición v2026): página única HTML lista para publicar
+
+## Como se ejecuta
+
+```bash
+python -m http.server 8080
+```
+
+Abre `http://127.0.0.1:8080/`. Sin build: HTML estatico.
+
+## Verificacion
+
+```bash
+node --test tests/
+```
+
+El test de humo comprueba que el arbol esperado existe y que el HTML o el paquete no esta roto.
+
+## Estructura
+
+```
+404.html
+AGENTS.md
+BIBLIA.md
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
+LICENSE
+README.md
+_shared
+accesibilidad.html
+ampliacion.html
+brand
+data
+```
+
+## Entorno
+
+- Node.js 20+ o Python 3.11+ segun el stack detectado.
+- Windows 10/11, PowerShell 5.1 o bash.
+
+## Licencia
+
+MIT. Ver `LICENSE`.
